@@ -1,8 +1,9 @@
 #!/bin/zsh
 # Installs the time-changing Wind Waker wallpaper and screen saver for the current user.
 #   ./install.sh [path/to/imgs]
-# Without an argument it reuses already-installed images, or downloads them from
-# the upstream GitHub repo.
+# Without an argument it uses the images in this repo's imgs/ folder, then
+# already-installed images, and only as a last resort downloads them from the
+# upstream GitHub repo.
 set -euo pipefail
 
 HERE=${0:A:h}
@@ -20,6 +21,9 @@ mkdir -p "$DEST/imgs" "$HOME/Library/LaunchAgents" "$HOME/Library/Screen Savers"
 if [[ $# -ge 1 ]]; then
   echo "Copying images from $1"
   ditto "$1" "$DEST/imgs"
+elif have_images "$HERE/imgs" && [[ "${HERE:A}/imgs" != "${DEST:A}/imgs" ]]; then
+  echo "Copying images from this repo"
+  ditto "$HERE/imgs" "$DEST/imgs"
 elif have_images "$DEST/imgs"; then
   echo "Images already installed"
 else

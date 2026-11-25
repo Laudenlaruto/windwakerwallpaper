@@ -17,7 +17,7 @@ Needs the Xcode command line tools (`swiftc`).
 ./install.sh
 ```
 
-The script downloads the images from the upstream repo, or reuses ones already installed. You can also pass an `imgs` folder: `./install.sh path/to/imgs`. Then choose **Wind Waker Time** under *Other* in System Settings › Screen Saver.
+The 200 images are in `imgs/` (copied from upstream commit `a4586ea`), so the install works even if the upstream repo is gone. You can also pass another folder: `./install.sh path/to/imgs`. Then choose **Wind Waker Time** under *Other* in System Settings › Screen Saver.
 
 Installed files:
 
@@ -50,5 +50,6 @@ The schedule in `Schedule.swift` matches upstream `script.js`. It uses 199 time 
 | `Schedule.swift` | time → image number, shared by both pieces |
 | `main.swift` | `timewall` tool and `--watch` mode |
 | `Saver.swift` | screen saver view |
+| `imgs/` | the 200 images, `1.jpg` … `200.jpg` (art by Matt Vince) |
 | `assets/` | screen saver thumbnails |
 | `install.sh` / `uninstall.sh` | install and remove |
